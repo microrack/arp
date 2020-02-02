@@ -94,12 +94,25 @@ encoder.update(dir) => {
             display = bpm;
         }
     } else {
-        for (i = 0..notes.length) {
+        for (i in 0..notes.length) {
             notes[i].note += dir;
             A..D[notes[i].button].note += notes[i].note;
             arpegio[i] += dir;
         }
         transpose += dir;
+    }
+
+    if(hold_button) {
+        if(notes.length == 0){
+            hold_time = gate_times.average;
+            hold_time += dir;
+
+            for gate in gate_times {
+                gate = hold_time;
+            }
+        } else {
+            notes.last.gate_time += dir;
+        }
     }
 }
 
